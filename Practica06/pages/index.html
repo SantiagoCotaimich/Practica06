@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Turnos</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <script>
+        if (!localStorage.getItem('loggedInUser')) {
+            window.location.href = "login.html";
+        }
+    </script>
+
+    <div class="d-flex">
+        <nav id="sidebar" class="bg-primary text-white p-3">
+            <div class="user-info text-center mb-3">
+                <img src="../images/Perfil.png" class="rounded-circle mb-3" alt="Usuario" width="80" height="80">
+                <p id="loggedInUser">[Nombre de usuario logeado]</p> 
+            </div>
+                <li class="nav-item dropdown text-center"> 
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        [Opciones de menú]
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="consultar.html">Consultar</a></li>
+                        <li><a class="dropdown-item" href="consultar.html">Registrar</a></li>
+                        <li><a class="dropdown-item" href="modificar.html">Modificar</a></li>
+                        <li><a class="dropdown-item" href="eliminar.html">Eliminar</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+
+        <div id="content" class="flex-grow-1 p-4">
+            <h1>Gestión de turnos</h1>
+            <h3>Turnos activos para la fecha: <span id="fechaActual"></span></h2>
+            <div id="resultadosTurnos">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Hora</th>
+                            <th>Cliente</th>
+                            <th>Servicio</th>
+                        </tr>
+                    </thead>
+                    <tbody id="turnosTableBody">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-primary text-white text-center py-2">
+        @2024 [Pie de página]
+    </footer>
+
+    <script>
+        document.getElementById('loggedInUser').innerText = localStorage.getItem('loggedInUser');
+
+        const today = new Date();
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        document.getElementById('fechaActual').innerText = today.toLocaleDateString('es-ES', options);
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
